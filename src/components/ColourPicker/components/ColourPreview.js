@@ -4,7 +4,8 @@ const ColourPreview = ({colour}) => {
   const preview = {
     height: 300,
     width: '100%',
-    backgroundColor: colour
+    backgroundColor: colour,
+    border: '2px solid grey',
   }
   return (
     <div style={preview}></div>

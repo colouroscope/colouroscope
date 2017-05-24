@@ -76,12 +76,15 @@ class ColourPicker extends Component {
       backgroundColor: hex
     }
     return (
-      <div>
+      <div className="mt-4">
+        <h4 className="text-center">Colour Picker</h4>
         <ColourPreview colour={hex} />
-        <HexForm hex={hex} handleHexChange={this.handleHexChange} />
-        <RgbForm rgb={rgb} handleRgbChange={this.handleRgbChange} />
-        <HslForm hsl={hsl} handleHslChange={this.handleHslChange} />
-        <AddToCollection handleSubmit={this.handleSubmit} />
+        <div className="mt-4">
+          <HexForm hex={hex} handleHexChange={this.handleHexChange} />
+          <RgbForm rgb={rgb} handleRgbChange={this.handleRgbChange} />
+          <HslForm hsl={hsl} handleHslChange={this.handleHslChange} />
+          <AddToCollection handleSubmit={this.handleSubmit} />
+        </div>
       </div>
     )
   }

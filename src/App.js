@@ -24,10 +24,10 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-sm-9">
-              <ColourCollection {...this.state} />
+            <div className="col-12 col-sm-8">
             </div>
-            <div className="col-12 col-sm-3">
+            <div className="col-12 col-sm-4">
+              <ColourCollection {...this.state} />
               <ColourPicker addColour={this.addColour} />
             </div>
           </div>
