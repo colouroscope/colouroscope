@@ -1,29 +1,87 @@
 import React, { Component } from 'react'
+import tinycolor from 'tinycolor2'
+
+import ColourPreview from './components/ColourPreview'
+import HexForm from './components/HexForm'
+import RgbForm from './components/RgbForm'
+import HslForm from './components/HslForm'
+import AddToCollection from './components/AddToCollection'
 
 class ColourPicker extends Component {
   constructor() {
     super()
     this.state = {
-      colour: null
+      hex: '#FFFFFF',
+      rgb: {r: 255, g: 255, b: 255},
+      hsl: {h: 0, s: 100, l: 1},
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleHexChange = this.handleHexChange.bind(this)
+    this.handleRgbChange = this.handleRgbChange.bind(this)
+    this.handleHslChange = this.handleHslChange.bind(this)
+    this.setColour = this.setColour.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(e) {
-    this.setState({colour: e.target.value})
+  setColour(c) {
+    var colour = tinycolor(c)
+    if(!colour.isValid()) return
+    let nextState = {}
+    if(colour.getFormat() !== 'hex8' && colour.getFormat() !== 'hex') {
+      const hex = colour.toHexString().toUpperCase()
+      Object.assign(nextState, {hex})
+    }
+    if(colour.getFormat() !== 'rgb') {
+      const rgb = colour.toRgb()
+      Object.assign(nextState, {rgb})
+    }
+    if(colour.getFormat() !== 'hsl') {
+      const hsl = colour.toHsl()
+      Object.assign(nextState, {hsl})
+    }
+    this.setState(nextState)
+  }
+
+  handleHexChange(e) {
+    this.setState({hex: e.target.value.toUpperCase()})
+    this.setColour(e.target.value)
+  }
+
+  handleRgbChange(field) {
+    return e => {
+      let { rgb } = this.state
+      rgb[field] = e.target.value
+      this.setState({rgb})
+      this.setColour(rgb)
+    }
+  }
+
+  handleHslChange(field) {
+    return e => {
+      let { hsl } = this.state
+      hsl[field] = e.target.value
+      this.setState({hsl})
+      this.setColour(hsl)
+    }
   }
 
   handleSubmit(e) {
-    this.props.addColour(this.state.colour)
+    this.props.addColour(this.state.hex)
   }
 
   render() {
-    const { colour } = this.state
+    const { hex, rgb, hsl } = this.state
+    const preview = {
+      height: 300,
+      width: '100%',
+      backgroundColor: hex
+    }
     return (
       <div>
-        <input type="text" className="form-control" value={colour} onChange={this.handleChange} />
-        <button className="btn btn-default" onClick={this.handleSubmit}>Add</button>
+        <ColourPreview colour={hex} />
+        <HexForm hex={hex} handleHexChange={this.handleHexChange} />
+        <RgbForm rgb={rgb} handleRgbChange={this.handleRgbChange} />
+        <HslForm hsl={hsl} handleHslChange={this.handleHslChange} />
+        <AddToCollection handleSubmit={this.handleSubmit} />
       </div>
     )
   }
