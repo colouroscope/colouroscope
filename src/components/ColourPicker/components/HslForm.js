@@ -1,22 +1,57 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { setHslColour, setPreviewColour } from '../../../actions'
+import tinycolor from 'tinycolor2'
 
-const HslForm = ({hsl, handleHslChange}) => (
+const mapStateToProps = ({ picker }) => {
+  return {
+    hsl: picker.hsl
+  }
+}
+
+const mergeProps = (stateProps, { dispatch }, ownProps) => {
+  return {
+    ...stateProps,
+    ...ownProps,
+    onHslChange: (e) => {
+      let { name, value } = e.target
+      let { hsl } = stateProps
+      hsl = { ...hsl, [name]: value }
+      dispatch(setHslColour(hsl))
+      value = parseFloat(value)
+      if(!isNaN(value)) {
+        hsl = { ...hsl, [name]: value }
+        if(tinycolor(hsl).isValid()){
+          dispatch(setPreviewColour(hsl))
+        }
+      }
+    }
+  }
+}
+
+let HslForm = ({hsl, onHslChange}) => (
   <div className="form-group row">
-    <label for="hsl-h-input" className="col-2 col-form-label">HSL</label>
+    <label htmlFor="hsl-h-input" className="col-2 col-form-label">HSL</label>
     <div className="col-10">
       <div className="row">
         <div className="col-4">
-          <input className="form-control" type="text" value={hsl.h} id="hsl-h-input" onChange={handleHslChange('h')} />
+          <input className="form-control" type="text" value={hsl.h} id="hsl-h-input" name="h" onChange={onHslChange} />
         </div>
         <div className="col-4">
-          <input className="form-control" type="text" value={hsl.s} id="hsl-s-input" onChange={handleHslChange('s')} />
+          <input className="form-control" type="text" value={hsl.s} id="hsl-s-input" name="s" onChange={onHslChange} />
         </div>
         <div className="col-4">
-          <input className="form-control" type="text" value={hsl.l} id="hsl-l-input" onChange={handleHslChange('l')} />
+          <input className="form-control" type="text" value={hsl.l} id="hsl-l-input" name="l" onChange={onHslChange} />
         </div>
       </div>
     </div>
   </div>
 )
+
+HslForm = connect(
+  mapStateToProps,
+  null,
+  mergeProps,
+)(HslForm)
 
 export default HslForm

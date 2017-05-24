@@ -1,7 +1,7 @@
 import React from 'react'
 import tinycolor from 'tinycolor2'
 
-const ColourCell = ({colour}) => {
+const ColourCell = ({ id, colour }) => {
   const style = {
     height: 30,
     width: '25%',
