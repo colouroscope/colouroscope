@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import ColourCollection from './components/ColourCollection';
-import ColourPicker from './components/ColourPicker';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import ColourCollection from './components/ColourCollection'
+import ColourPicker from './components/ColourPicker'
+import logo from './logo.svg'
+import './App.css'
 
 class App extends Component {
   constructor() {
@@ -14,9 +14,9 @@ class App extends Component {
   }
 
   addColour(colour) {
-    const { colours } = this.state;
-    colours.push(colour);
-    this.setState({colours});
+    const { colours } = this.state
+    colours.push(colour)
+    this.setState({colours})
   }
 
   render() {
@@ -33,8 +33,8 @@ class App extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
