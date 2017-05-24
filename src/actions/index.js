@@ -42,9 +42,10 @@ export const loadPictureRequest = (src) => {
   }
 }
 
-export const loadPictureSuccess = (image) => {
+export const loadPictureSuccess = (image, data) => {
   return {
     type: 'LOAD_PICTURE_SUCCESS',
-    image
+    image,
+    data,
   }
 }
