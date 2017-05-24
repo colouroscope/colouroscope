@@ -34,3 +34,17 @@ export const setHslColour = (hsl) => {
     hsl
   }
 }
+
+export const loadPictureRequest = (src) => {
+  return {
+    type: 'LOAD_PICTURE_REQUEST',
+    src
+  }
+}
+
+export const loadPictureSuccess = (image) => {
+  return {
+    type: 'LOAD_PICTURE_SUCCESS',
+    image
+  }
+}
