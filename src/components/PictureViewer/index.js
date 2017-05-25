@@ -1,36 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Dimensions from 'react-dimensions'
-import { Image, Layer, Rect, Stage, Group } from 'react-konva'
-import { loadPictureRequest, loadPictureSuccess, setPreviewColour } from '../../actions'
-
-const getImageData = (img) => {
-  const canvas = document.createElement('canvas');
-  canvas.width = img.width
-  canvas.height = img.height
-  const ctx = canvas.getContext('2d')
-  ctx.drawImage(img, 0, 0)
-  const imageData = ctx.getImageData(0, 0, img.width, img.height)
-  const data = imageData.data
-  return {
-    data,
-    getColourAtPosition: (x, y) => {
-      const offset = (y * img.width + x) * 4
-      return {
-        r: data[offset],
-        g: data[offset+1],
-        b: data[offset+2],
-      }
-    }
-  }
-}
+import { Image, Layer, Stage } from 'react-konva'
+import PictureLoader from './components/PictureLoader'
+import { movePicture, setPreviewColour } from '../../actions'
 
 const mapStateToProps = ({ picture }) => {
-  const { src, image, data } = picture
+  const { image, data, position } = picture
   return {
-    src,
     image,
     data,
+    position,
   }
 }
 
@@ -38,33 +18,38 @@ const mergeProps = (stateProps, { dispatch }, ownProps) => {
   return {
     ...stateProps,
     ...ownProps,
-    onClickImage: (e) => {
-      const { data } = stateProps
-      console.log(e)
-      const { offsetX, offsetY } = e.evt
-      const rgb = data.getColourAtPosition(offsetX, offsetY)
-      dispatch(setPreviewColour(rgb))
+    onDrag: (e) => {
+      const { x, y } = e.target.attrs
+      dispatch(movePicture({ x, y }))
     },
-    onClick: (e) => {
-      const src = '/kaleidoscope.png'
-      dispatch(loadPictureRequest(src))
-      const image = new window.Image();
-      image.src = src
-      image.onload = (imgEvent) => {
-        const data = getImageData(imgEvent.target)
-        dispatch(loadPictureSuccess(image, data))
-      }
+    onClickImage: (e) => {
+      const { data, position } = stateProps
+      const { offsetX, offsetY } = e.evt
+      const x = offsetX - position.x
+      const y = offsetY - position.y
+      const rgb = data.getColourAtPosition(x, y)
+      dispatch(setPreviewColour(rgb))
     }
   }
 }
 
 class PV extends Component {
   render() {
-    const { containerWidth, image, onClick, onClickImage } = this.props
+    const { containerWidth, image, position,
+      onClickImage, onDrag, } = this.props
     const height = Math.max(700, containerWidth)
     let picture
     if(image !== null) {
-      picture = (<Image image={image} onClick={onClickImage} />)
+      picture = (
+        <Image
+          image={image}
+          x={position.x}
+          y={position.y}
+          onClick={onClickImage}
+          draggable="true"
+          onDragEnd={onDrag}
+        />
+      )
     }
     return (
       <div>
@@ -73,7 +58,7 @@ class PV extends Component {
             {picture}
           </Layer>
         </Stage>
-        <button className="btn btn-default" onClick={onClick}>Load Image</button>
+        <PictureLoader />
       </div>
     )
   }

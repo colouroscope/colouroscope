@@ -49,3 +49,10 @@ export const loadPictureSuccess = (image, data) => {
     data,
   }
 }
+
+export const movePicture = (position) => {
+  return {
+    type: 'MOVE_PICTURE',
+    position,
+  }
+}
