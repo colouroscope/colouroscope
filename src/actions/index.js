@@ -1,3 +1,10 @@
+import {
+    loadPictureRequest, loadPictureSuccess,
+    fetchPictureFromPath, fetchPictureFromUrl } from './pictures.js'
+
+export { loadPictureRequest, loadPictureSuccess,
+fetchPictureFromPath, fetchPictureFromUrl }
+
 let nextColourId = 0;
 export const addColour = (colour) => {
   return {
@@ -32,21 +39,6 @@ export const setHslColour = (hsl) => {
   return {
     type: 'SET_HSL_COLOUR',
     hsl
-  }
-}
-
-export const loadPictureRequest = (src) => {
-  return {
-    type: 'LOAD_PICTURE_REQUEST',
-    src
-  }
-}
-
-export const loadPictureSuccess = (image, data) => {
-  return {
-    type: 'LOAD_PICTURE_SUCCESS',
-    image,
-    data,
   }
 }
 
