@@ -56,3 +56,15 @@ export const movePicture = (position) => {
     position,
   }
 }
+
+export const showDropzoneOverlay = () => {
+  return {
+    type: 'SHOW_DROPZONE_OVERLAY',
+  }
+}
+
+export const hideDropzoneOverlay = () => {
+  return {
+    type: 'HIDE_DROPZONE_OVERLAY',
+  }
+}

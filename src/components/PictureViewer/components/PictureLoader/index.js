@@ -23,22 +23,26 @@ const getImageData = (img) => {
   }
 }
 
+const loadPictureFromPath = (path, dispatch) => {
+  const reader = new FileReader();
+  dispatch(loadPictureRequest(path))
+  reader.onload = function(event){
+    const src = event.target.result
+    dispatch(loadPictureRequest(src))
+    const image = new window.Image();
+    image.onload = (imgEvent) => {
+      const data = getImageData(imgEvent.target)
+      dispatch(loadPictureSuccess(image, data))
+    }
+    image.src = src
+  }
+  reader.readAsDataURL(path);
+}
+
 let PictureLoader = ({ dispatch }) => {
   const onChange = (e) => {
-    const reader = new FileReader();
     const path = e.target.files[0]
-    dispatch(loadPictureRequest(path))
-    reader.onload = function(event){
-      const src = event.target.result
-      dispatch(loadPictureRequest(src))
-      const image = new window.Image();
-      image.onload = (imgEvent) => {
-        const data = getImageData(imgEvent.target)
-        dispatch(loadPictureSuccess(image, data))
-      }
-      image.src = src
-    }
-    reader.readAsDataURL(path);
+    loadPictureFromPath(path, dispatch)
   }
 
   return (
