@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Dimensions from 'react-dimensions'
 import { Image, Layer, Stage } from 'react-konva'
-import PictureLoader from './PictureLoader'
+import PictureLoader from '../containers/PictureLoader'
 import ResetButton from '../containers/ResetButton'
 import { movePicture, setPreviewColour } from '../actions'
 
