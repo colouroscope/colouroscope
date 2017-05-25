@@ -5,7 +5,14 @@ import dropzone from './dropzone'
 import picker from './picker'
 import picture from './picture'
 
-const colourApp = combineReducers({
+const colourApp = (state, action) => {
+  if (action.type === 'RESET') {
+    state = undefined
+  }
+  return appReducer(state, action)
+}
+
+const appReducer = combineReducers({
   canvas,
   collection,
   picker,

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Dimensions from 'react-dimensions'
 import { Image, Layer, Stage } from 'react-konva'
-import PictureLoader from './components/PictureLoader'
+import PictureLoader from '../PictureLoader'
+import ResetButton from '../ResetButton'
 import { movePicture, setPreviewColour } from '../../actions'
 
 const getColourAtPosition = (data, dimensions, x, y) => {
@@ -69,7 +70,10 @@ class PV extends Component {
             {picture}
           </Layer>
         </Stage>
-        <PictureLoader />
+        <div className="pt-2">
+          <PictureLoader />
+          <ResetButton />
+        </div>
       </div>
     )
   }

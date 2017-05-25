@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchPictureFromPath } from '../../../../actions'
+import { fetchPictureFromPath } from '../../actions'
 
 let PictureLoader = ({ dispatch }) => {
   const onChange = (e) => {
@@ -9,8 +9,8 @@ let PictureLoader = ({ dispatch }) => {
   }
 
   return (
-    <div className="mt-2">
-      <label htmlFor="pictureLoader" className="btn btn-secondary">Load Picture</label>
+    <div className="d-inline-block">
+      <label htmlFor="pictureLoader" style={{marginBottom: 0}} className="btn btn-secondary mt-0">Load Picture</label>
       <input id="pictureLoader" type="file" hidden className="form-control-file" onChange={onChange} />
     </div>
   )
