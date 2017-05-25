@@ -1,13 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
-import devToolsEnhancer from 'remote-redux-devtools'
+import { Provider } from 'react-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
+import { persistStore, autoRehydrate } from 'redux-persist'
 import colourApp from './reducers'
 import App from './App'
+import { fetchPictureIfNeeded } from './actions'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 
@@ -21,7 +22,8 @@ const store = createStore(colourApp, composeEnhancers(
   applyMiddleware(
     thunkMiddleware,
     loggerMiddleware,
-  )
+  ),
+  autoRehydrate()
 ))
 
 render (
@@ -30,4 +32,9 @@ render (
   </Provider>,
   document.getElementById('root')
 )
+
+persistStore(store, {blacklist: ['canvas']}, () => {
+  store.dispatch(fetchPictureIfNeeded())
+})
+
 registerServiceWorker()

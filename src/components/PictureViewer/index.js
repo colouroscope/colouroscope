@@ -5,11 +5,22 @@ import { Image, Layer, Stage } from 'react-konva'
 import PictureLoader from './components/PictureLoader'
 import { movePicture, setPreviewColour } from '../../actions'
 
-const mapStateToProps = ({ picture }) => {
-  const { image, data, position } = picture
+const getColourAtPosition = (data, dimensions, x, y) => {
+  const offset = (y * dimensions.width + x) * 4
+  return {
+    r: data[offset],
+    g: data[offset+1],
+    b: data[offset+2],
+  }
+}
+
+const mapStateToProps = ({ canvas, picture }) => {
+  const { image, data } = canvas
+  const { dimensions, position } = picture
   return {
     image,
     data,
+    dimensions,
     position,
   }
 }
@@ -23,11 +34,11 @@ const mergeProps = (stateProps, { dispatch }, ownProps) => {
       dispatch(movePicture({ x, y }))
     },
     onClickImage: (e) => {
-      const { data, position } = stateProps
+      const { data, dimensions, position } = stateProps
       const { offsetX, offsetY } = e.evt
       const x = offsetX - position.x
       const y = offsetY - position.y
-      const rgb = data.getColourAtPosition(x, y)
+      const rgb = getColourAtPosition(data, dimensions, x, y)
       dispatch(setPreviewColour(rgb))
     }
   }

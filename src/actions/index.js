@@ -1,15 +1,16 @@
+import uuid from 'uuid'
 import {
-    loadPictureRequest, loadPictureSuccess,
-    fetchPictureFromPath, fetchPictureFromUrl } from './pictures.js'
+  loadPictureRequest, loadPictureSuccess,
+  fetchPictureFromPath, fetchPictureFromUrl, fetchPictureIfNeeded
+} from './pictures.js'
 
 export { loadPictureRequest, loadPictureSuccess,
-fetchPictureFromPath, fetchPictureFromUrl }
+fetchPictureFromPath, fetchPictureFromUrl, fetchPictureIfNeeded }
 
-let nextColourId = 0;
 export const addColour = (colour) => {
   return {
     type: 'ADD_COLOUR',
-    id: nextColourId++,
+    id: uuid.v1(),
     colour,
   }
 }

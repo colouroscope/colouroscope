@@ -9,8 +9,8 @@ let PictureLoader = ({ dispatch }) => {
   }
 
   return (
-    <div>
-      <label htmlFor="pictureLoader" className="btn btn-primary">Load Picture</label>
+    <div className="mt-2">
+      <label htmlFor="pictureLoader" className="btn btn-secondary">Load Picture</label>
       <input id="pictureLoader" type="file" hidden className="form-control-file" onChange={onChange} />
     </div>
   )

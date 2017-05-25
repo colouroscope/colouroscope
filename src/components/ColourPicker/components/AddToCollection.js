@@ -11,7 +11,7 @@ const mapStateToProps = ({ picker }) => {
 function mergeProps(stateProps, dispatchProps, ownProps) {
   const { colour } = stateProps;
   const { dispatch } = dispatchProps;
-  
+
   return {
     ...ownProps,
     onClick: (e) => {
@@ -21,7 +21,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
 }
 
 let AddToCollection = ({onClick}) => (
-  <button className="btn btn-default btn-block" onClick={onClick}>Add to Collection</button>
+  <button className="btn btn-primary btn-block" onClick={onClick}>Add to Collection</button>
 )
 
 AddToCollection = connect(
