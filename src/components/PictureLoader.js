@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchPictureFromPath } from '../../actions'
+import { fetchPictureFromPath } from '../actions'
 
 let PictureLoader = ({ dispatch }) => {
   const onChange = (e) => {

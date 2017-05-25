@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Dropzone from 'react-dropzone'
 import { showDropzoneOverlay, hideDropzoneOverlay,
-  fetchPictureFromPath } from '../../actions'
+  fetchPictureFromPath } from '../actions'
 
 const mapStateToProps = ({ dropzone }) => {
   return {

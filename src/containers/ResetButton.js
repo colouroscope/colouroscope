@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { reset } from '../../actions'
+import { reset } from '../actions'
+import Button from '../components/Button'
 
 let ResetButton = ({ dispatch }) => (
   <div className="d-inline-block">
-    <button className="btn btn-secondary ml-1" onClick={() => {dispatch(reset())}}>Reset</button>
+    <Button onClick={() => {dispatch(reset())}}>Reset</Button>
   </div>
 )
 

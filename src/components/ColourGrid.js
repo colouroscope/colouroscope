@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ColourCell from '../ColourCell'
+import ColourCell from './ColourCell'
 
 const ColourGrid = ({ colours, message }) => {
   let nothing
