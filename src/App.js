@@ -1,8 +1,8 @@
 import React from 'react'
 import ColourCollection from './containers/ColourCollection'
-import ColourPicker from './components/ColourPicker'
-import PictureViewer from './components/PictureViewer'
+import PictureViewer from './containers/PictureViewer'
 import PictureDropzone from './containers/PictureDropzone'
+import ColourPicker from './components/ColourPicker'
 import './App.css'
 
 const App = () =>  (

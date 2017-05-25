@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Dimensions from 'react-dimensions'
 import { Image, Layer, Stage } from 'react-konva'
-import PictureLoader from '../containers/PictureLoader'
-import ResetButton from '../containers/ResetButton'
+import PictureLoader from './PictureLoader'
+import ResetButton from './ResetButton'
 import { movePicture, setPreviewColour } from '../actions'
 
 const getColourAtPosition = (data, dimensions, x, y) => {
