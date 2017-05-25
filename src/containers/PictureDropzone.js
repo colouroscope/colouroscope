@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Dropzone from 'react-dropzone'
+import OverlayDropzone from '../components/OverlayDropzone'
 import { showDropzoneOverlay, hideDropzoneOverlay,
   fetchPictureFromPath } from '../actions'
 
@@ -29,30 +29,16 @@ const mapDispatchToProps = (dispatch) => {
 let PictureDropzone = ({ active, children,
   onDragEnter, onDragLeave, onDrop }) => {
   const accept = 'image/png'
-  const overlayStyle= {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    padding: '5em 0',
-    background: 'rgba(0,0,0,0.5)',
-    textAlign: 'center',
-    color: '#fff',
-    zIndex: 1000
-  }
   return (
-    <Dropzone
-      disableClick
-      style={{}}
+    <OverlayDropzone
       accept={accept}
       onDrop={onDrop}
       onDragEnter={onDragEnter}
       onDragLeave={onDragLeave}
+      message="Drop to Load Picture"
       >
-      { active && <div style={overlayStyle}>Drop to Load Picture</div>}
-      { children }
-    </Dropzone>
+      {children}
+    </OverlayDropzone>
   )
 }
 
