@@ -27,7 +27,6 @@ const ColourGrid = ({ colours, message }) => {
   )
 }
 
-
 ColourGrid.propTypes = {
   colours: PropTypes.array.isRequired,
   message: PropTypes.string,
