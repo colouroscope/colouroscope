@@ -8,6 +8,7 @@ import { movePicture, setPreviewColour } from '../actions'
 
 const getColourAtPosition = (data, dimensions, x, y) => {
   const offset = (y * dimensions.width + x) * 4
+  if(data[offset+3] == 0) return {r: 255, g: 255, b: 255}; // Transparent
   return {
     r: data[offset],
     g: data[offset+1],
