@@ -54,23 +54,30 @@ class PV extends Component {
     let picture
     if(image !== null) {
       picture = (
-        <Image
-          image={image}
-          x={position.x}
-          y={position.y}
-          onClick={onClickImage}
-          draggable="true"
-          onDragEnd={onDrag}
-        />
+        <Stage width={containerWidth} height={height}>
+          <Layer>
+            <Image
+              image={image}
+              x={position.x}
+              y={position.y}
+              onClick={onClickImage}
+              draggable="true"
+              onDragEnd={onDrag}
+              />
+          </Layer>
+        </Stage>
       )
     }
     return (
       <div>
-        <Stage width={containerWidth} height={height}>
-          <Layer>
-            {picture}
-          </Layer>
-        </Stage>
+        {picture}
+        {!picture &&
+          <div
+            className="text-center py-4"
+            style={{height: height, width: containerWidth, backgroundColor: '#FAFAFA'}}>
+            Drag/ Load Picture to Preview
+          </div>
+        }
         <div className="pt-2">
           <PictureLoader />
           <ResetButton />
