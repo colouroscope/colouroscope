@@ -1,11 +1,6 @@
 import uuid from 'uuid'
-import {
-  loadPictureRequest, loadPictureSuccess,
-  fetchPictureFromPath, fetchPictureFromUrl, fetchPictureIfNeeded
-} from './pictures.js'
 
-export { loadPictureRequest, loadPictureSuccess,
-fetchPictureFromPath, fetchPictureFromUrl, fetchPictureIfNeeded }
+export * from './picture.js'
 
 export const reset = () => ({
   type: 'RESET'
