@@ -1,10 +1,9 @@
 import React from 'react'
 import tinycolor from 'tinycolor2'
 
-const ColourCell = ({ id, colour }) => {
+const ColourCell = ({ id, colour, handleClick}) => {
   const style = {
     height: 30,
-    width: '25%',
     backgroundColor: colour,
   }
 
@@ -14,7 +13,7 @@ const ColourCell = ({ id, colour }) => {
   }
 
   return (
-    <div className="d-inline-block text-center" style={style}>
+    <div className="d-inline-block text-center w-25" style={style} onClick={handleClick}>
       <small>{colour}</small>
     </div>
   )

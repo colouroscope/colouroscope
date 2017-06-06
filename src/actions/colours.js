@@ -1,8 +1,18 @@
-
 export const addColour = (id, colour) => ({
     type: 'ADD_COLOUR',
     id,
     colour,
+})
+
+export const setColour = (id, colour) => ({
+    type: 'SET_COLOUR',
+    id,
+    colour,
+})
+
+export const removeColour = (id) => ({
+    type: 'REMOVE_COLOUR',
+    id,
 })
 
 export const setPreviewColour = (colour) => ({

@@ -1,7 +1,7 @@
 import uuid from 'uuid'
 import React from 'react'
 import { connect } from 'react-redux'
-import { addColour } from '../../../actions'
+import { addColour } from '../../actions/index'
 
 const mapStateToProps = ({ picker }) => {
     return {

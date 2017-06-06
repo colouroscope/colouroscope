@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setHslColour, setPreviewColour } from '../../../actions'
+import { setHslColour, setPreviewColour } from '../../actions/index'
 import tinycolor from 'tinycolor2'
 
 const mapStateToProps = ({ picker }) => {
