@@ -24,7 +24,7 @@ export const setCanvasImage = (image, data) => ({
 })
 
 const getImageData = (img) => {
-    const canvas = document.createElement('canvas');
+    const canvas = document.createElement('canvas')
     canvas.width = img.width
     canvas.height = img.height
     const ctx = canvas.getContext('2d')
@@ -54,7 +54,7 @@ export const fetchPictureIfNeeded = () => (dispatch, getState) => {
 
 export const fetchPictureFromUrl = (src) => (dispatch) => {
     dispatch(loadPictureRequest(src, 'url'))
-    const image = new window.Image();
+    const image = new window.Image()
     image.onload = (imgEvent) => {
         const { base64Image, data, height, width } = getImageData(imgEvent.target)
         dispatch(loadPictureSuccess(base64Image, height, width))
@@ -64,7 +64,7 @@ export const fetchPictureFromUrl = (src) => (dispatch) => {
 }
 
 export const fetchPictureFromBase64 = (src) => (dispatch) => {
-    const image = new window.Image();
+    const image = new window.Image()
     image.onload = (imgEvent) => {
         const { base64Image, data, height, width } = getImageData(imgEvent.target)
         dispatch(loadPictureSuccess(base64Image, height, width))
@@ -80,5 +80,5 @@ export const fetchPictureFromPath = (path) => (dispatch) => {
         const src = event.target.result
         dispatch(fetchPictureFromUrl(src))
     }
-    reader.readAsDataURL(path);
+    reader.readAsDataURL(path)
 }

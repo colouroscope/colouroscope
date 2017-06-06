@@ -15,7 +15,7 @@ let ColourPreview = ({colour}) => {
     border: '2px solid grey',
   }
   return (
-    <div style={preview}></div>
+    <div className="mb-4" style={preview}></div>
   )
 }
 

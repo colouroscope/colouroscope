@@ -1,21 +1,19 @@
 import React from 'react'
-import ColourPreview from './components/ColourPreview'
+import ColourPreview from '../ColourPreview'
 import HexForm from './components/HexForm'
 import RgbForm from './components/RgbForm'
 import HslForm from './components/HslForm'
 import AddToCollection from './components/AddToCollection'
+import Panel from '../Panel'
 
 const ColourPicker = () => (
-  <div className="mt-4">
-    <h4 className="text-center">Colour Picker</h4>
-    <ColourPreview />
-    <div className="mt-4">
-      <HexForm />
-      <RgbForm />
-      <HslForm />
-      <AddToCollection />
-    </div>
-  </div>
+    <Panel title="Colour Picker">
+        <ColourPreview />
+        <HexForm />
+        <RgbForm />
+        <HslForm />
+        <AddToCollection />
+    </Panel>
 )
 
 export default ColourPicker
