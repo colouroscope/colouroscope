@@ -5,6 +5,7 @@ import dropzone from './dropzone'
 import editor from './editor'
 import picker from './picker'
 import picture from './picture'
+import substitutions from './substitutions'
 
 const colourApp = (state, action) => {
     if (action.type === 'RESET') {
@@ -20,6 +21,7 @@ const appReducer = combineReducers({
     editor,
     picker,
     picture,
+    substitutions,
 })
 
 export default colourApp

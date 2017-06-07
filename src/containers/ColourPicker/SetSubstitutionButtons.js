@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setColour, removeColour, clearEditColour } from '../../actions/index'
+import { setColour, clearEditColour, substituteColours } from '../../actions/index'
 
 const mapStateToProps = ({ picker, editor }) => {
     const { id } = editor
@@ -19,10 +19,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
         handleSave: () => {
             dispatch(clearEditColour())
             dispatch(setColour(id, colour))
-        },
-        handleRemove: () => {
-            dispatch(clearEditColour())
-            dispatch(removeColour(id))
+            dispatch(substituteColours())
         },
         handleCancel: () => {
             dispatch(clearEditColour())
@@ -30,11 +27,10 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     }
 }
 
-let SetCollectionButtons = ({handleSave, handleRemove, handleCancel}) => (
+let SetCollectionButtons = ({handleSave, handleCancel}) => (
     <div>
-        <button className="btn btn-primary w-50" onClick={handleSave}>Save Colour</button>
-        <button className="btn btn-danger w-50" onClick={handleRemove}>Remove</button>
-        <button className="btn btn-default btn-block" onClick={handleCancel}>Cancel</button>
+        <button className="btn btn-primary btn-block" onClick={handleSave}>Save Colour</button>
+        <button className="btn btn-default btn-block mt-0" onClick={handleCancel}>Cancel</button>
     </div>
 )
 

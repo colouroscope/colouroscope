@@ -6,6 +6,7 @@ import RgbForm from './RgbForm'
 import HslForm from './HslForm'
 import AddToCollection from './AddToCollectionButton'
 import SetCollectionButtons from './SetCollectionButtons'
+import SetSubstitutionButtons from './SetSubstitutionButtons'
 import Panel from '../../components/Panel'
 
 const mapStateToProps = ({ picker, editor }) => {
@@ -19,14 +20,15 @@ const mapDispatchToProps = (dispatch) => ({
 
 })
 
-let ColourPicker = ({ id, hex, rgb, hsl }) => (
+let ColourPicker = ({ id, group, hex, rgb, hsl }) => (
     <Panel title="Colour Picker">
         <ColourPreview colour={hex} />
         <HexForm hex={hex} />
         <RgbForm rgb={rgb} />
         <HslForm hsl={hsl} />
         {!id && <AddToCollection  />}
-        {id && <SetCollectionButtons />}
+        {id && group==='collection' && <SetCollectionButtons />}
+        {id && group==='substitution' && <SetSubstitutionButtons />}
     </Panel>
 )
 

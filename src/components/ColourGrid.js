@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ColourCell from './ColourCell'
 
-const ColourGrid = ({ colours, message, handleSelect }) => (
+const ColourGrid = ({ colours, message, handleSelect, active }) => (
     <div style={{border: '1px solid grey'}} >
         {!colours.length &&
         <p className="text-center text-muted m-4">
@@ -12,7 +12,7 @@ const ColourGrid = ({ colours, message, handleSelect }) => (
         </p>
         }
         {colours.map(({ id, colour }) => {
-            return (<ColourCell key={id} colour={colour} handleClick={handleSelect.bind(this, id, colour)} />)
+            return (<ColourCell key={id} colour={colour} active={active === id} handleClick={handleSelect.bind(this, id, colour)} />)
         })}
     </div>
 )

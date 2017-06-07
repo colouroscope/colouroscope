@@ -5,10 +5,6 @@ const defaultState = {
 
 const colour = (state = defaultState, action) => {
     switch (action.type) {
-        case 'ADD_COLOUR': {
-            const { id, colour } = action
-            return Object.assign({}, defaultState, { id, colour })
-        }
         case 'SET_COLOUR': {
             if(state.id === action.id) {
                 const { colour } = action
@@ -21,22 +17,31 @@ const colour = (state = defaultState, action) => {
     }
 }
 
-const collection = (state = [], action) => {
+const substitutions = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_COLOUR':
+        case 'ADD_SUBSTITUTION': {
+            const { id, from, to } = action
             return [
                 ...state,
-                colour(undefined, action)
+                { id, from, to }
             ]
-        case 'SET_COLOUR':
-            return state.map(c => colour(c, action))
-        case 'REMOVE_COLOUR': {
+        }
+        case 'SET_SUBSTITUTION':
+            return state
+        case 'REMOVE_SUBSTITUTION': {
             const { id } = action
             return state.filter(c => c.id !== id)
         }
+        case 'SET_COLOUR':
+            return state.map(s => (
+                Object.assign({}, s, {
+                    from: colour(s.from, action),
+                    to: colour(s.to, action),
+                })
+            ))
         default:
             return state
     }
 }
 
-export default collection
+export default substitutions

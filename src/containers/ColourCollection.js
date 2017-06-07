@@ -4,16 +4,18 @@ import ColourGrid from '../components/ColourGrid'
 import Panel from '../components/Panel'
 import { setPreviewColour, setEditColour } from '../actions'
 
-const mapStateToProps = ({ collection }) => {
+const mapStateToProps = ({ collection, editor }) => {
+    const { id } = editor
     return {
-        colours: collection
+        colours: collection,
+        active: id,
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
     handleSelect: (id, colour) => {
         dispatch(setPreviewColour(colour))
-        dispatch(setEditColour(id))
+        dispatch(setEditColour(id, 'collection'))
     },
 })
 
