@@ -1,8 +1,10 @@
 # Colouroscope
 
-Another Colour Picker
+Colour Picker built with React Redux on HTML5 & Canvas Edit
 
 Try it here: https://colouroscope.github.io
+
+Blog post about the project is available here: [Colouroscope: Another Colour Picker](https://nicluo.com/projects/colouroscope-another-colour-picker/)
 
 ---
 
